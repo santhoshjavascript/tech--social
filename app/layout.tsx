@@ -8,9 +8,9 @@ import { ThemeProvider } from "next-themes";
 import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 import ScrollToTop from "@/components/scrollToTop/ScrollToTop";
-import "react-modal-video/css/modal-video.css";
+import "react-modal-video/css/modal-video.css"; // Use CSS if SCSS is unavailable
 import "slick-carousel/slick/slick.css";
-import "../styles/tailwind.scss"; // ✅ Enable global styles
+// import "../styles/globals.scss";
 
 export default function RootLayout({
   children,

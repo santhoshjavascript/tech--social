@@ -9,48 +9,38 @@
 
 /*============================================ 
 ======== Table of Css Content =========
-# Google Fonts
-# CSS Plugins
-# Tailwind Base
-# Bootstrap
-# Page Styles
-# Global Styles
-# Responsive Styles
+# Typography
+# Normalize 
+# Global style
+# Header Area
+# Banner Area
+# Section Area
+# Footer Area
 ============================================*/
 
-/*--------------------
-# Google Fonts
---------------------*/
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;500;600;700;800;900&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Amiri+Quran&display=swap");
-
-/*--------------------
-# CSS Plugins
---------------------*/
-@import "./../public/vendor/font-awesome/css/fontawesome.min.css";
-@import "./../public/vendor/font-awesome/css/materialicons.css";
-// @import "../css/plugins/animate.min.css";
-
-/*--------------------
-# Tailwind Directives
---------------------*/
+// Tailwind CSS directives
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/*--------------------
-# Bootstrap
---------------------*/
+// default font family
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;500;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Amiri+Quran&display=swap");
+
+// CSS Plugin import
+@import "./../public/vendor/font-awesome/css/fontawesome.min.css";
+@import "./../public/vendor/font-awesome/css/materialicons.css";
+// @import "../css/plugins/animate.min.css";
+
+// Bootstrap import
 @import "./_bootstrap.scss";
 
-/*--------------------
-# Page Styles
---------------------*/
+// Pages
 @import "./pages/_banner-footer.scss";
 @import "./pages/_section.scss";
 
-/*--------------------
-# Global and Responsive
---------------------*/
-@import "./main/_global.scss";
+// Responsive Area
 @import "./main/_responsive.scss";
+
+// Sass Global
+@import "./main/_global.scss";
