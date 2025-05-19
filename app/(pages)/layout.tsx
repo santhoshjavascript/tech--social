@@ -4,17 +4,18 @@ import GroupLeftMenu from "@/components/menu/GroupLeftMenu";
 import { pageAdminTools } from "@/data/sidbarData";
 import { useParams } from "next/navigation";
 import avatar_13 from "/public/images/avatar-13.png";
+import { ReactNode } from "react";
 
 interface PagesLayoutProps {
-  params: { getLayout?: boolean };
-  children: React.ReactNode;
+  children: ReactNode;
+  params: { pageId?: string }; // Type params to include pageId
 }
 
 const PagesLayout = ({ params, children }: PagesLayoutProps) => {
-  const { getLayout } = params;
-  const { pageId } = useParams();
+  const { pageId } = useParams<{ pageId: string }>(); // Type useParams for pageId
 
-  if (getLayout || pageId) {
+  // If params.pageId exists, skip the layout (render children directly)
+  if (params.pageId) {
     return children;
   }
 
@@ -31,7 +32,6 @@ const PagesLayout = ({ params, children }: PagesLayoutProps) => {
               type="Public"
             />
           </div>
-
           {children}
         </div>
       </div>
