@@ -30,17 +30,10 @@
 // CSS Plugin import
 @import "./../public/vendor/font-awesome/css/fontawesome.min.css";
 @import "./../public/vendor/font-awesome/css/materialicons.css";
-// @import "../css/plugins/animate.min.css";
 
-// Bootstrap import
-@import "./_bootstrap.scss";
-
-// Pages
-@import "./pages/_banner-footer.scss";
-@import "./pages/_section.scss";
-
-// Responsive Area
-@import "./main/_responsive.scss";
-
-// Sass Global
-@import "./main/_global.scss";
+// Bootstrap and custom imports
+@use "./_bootstrap.scss" as *;
+@use "./pages/_banner-footer.scss" as *;
+@use "./pages/_section.scss" as *;
+@use "./main/_responsive.scss" as *;
+@use "./main/_global.scss" as *;

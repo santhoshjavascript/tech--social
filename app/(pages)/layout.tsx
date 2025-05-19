@@ -8,14 +8,15 @@ import { ReactNode } from "react";
 
 interface PagesLayoutProps {
   children: ReactNode;
-  params: { pageId?: string }; // Type params to include pageId
+  params: Promise<{ pageId?: string }>; // Type params as a Promise
 }
 
-const PagesLayout = ({ params, children }: PagesLayoutProps) => {
-  const { pageId } = useParams<{ pageId: string }>(); // Type useParams for pageId
+const PagesLayout = async ({ params, children }: PagesLayoutProps) => {
+  const resolvedParams = await params; // Await the params Promise
+  const { pageId } = useParams<{ pageId: string }>(); // Keep useParams for client-side access
 
   // If params.pageId exists, skip the layout (render children directly)
-  if (params.pageId) {
+  if (resolvedParams.pageId) {
     return children;
   }
 
