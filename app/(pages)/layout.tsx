@@ -4,19 +4,17 @@ import GroupLeftMenu from "@/components/menu/GroupLeftMenu";
 import { pageAdminTools } from "@/data/sidbarData";
 import { useParams } from "next/navigation";
 import avatar_13 from "/public/images/avatar-13.png";
-import { ReactNode } from "react";
 
 interface PagesLayoutProps {
-  children: ReactNode;
-  params: Promise<{ pageId?: string }>; // Type params as a Promise
+  params: { getLayout?: boolean };
+  children: React.ReactNode;
 }
 
-const PagesLayout = async ({ params, children }: PagesLayoutProps) => {
-  const resolvedParams = await params; // Await the params Promise
-  const { pageId } = useParams<{ pageId: string }>(); // Keep useParams for client-side access
+const PagesLayout = ({ params, children }: PagesLayoutProps) => {
+  const { getLayout } = params;
+  const { pageId } = useParams();
 
-  // If params.pageId exists, skip the layout (render children directly)
-  if (resolvedParams.pageId) {
+  if (getLayout || pageId) {
     return children;
   }
 
@@ -33,6 +31,7 @@ const PagesLayout = async ({ params, children }: PagesLayoutProps) => {
               type="Public"
             />
           </div>
+
           {children}
         </div>
       </div>

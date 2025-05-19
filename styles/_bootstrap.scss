@@ -1,3 +1,5 @@
+@use "./../node_modules/bootstrap/scss/bootstrap" as *;
+
 $spacer: 1rem !default;
 $spacers: (
   0: 0,
@@ -13,5 +15,3 @@ $spacers: (
     $spacers
   );
 }
-
-@use "./../node_modules/bootstrap/scss/bootstrap" as *;

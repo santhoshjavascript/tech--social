@@ -1,41 +1,59 @@
 "use client";
 
-import GroupLeftMenu from "@/components/menu/GroupLeftMenu";
-import { pageAdminTools } from "@/data/sidbarData";
-import { useParams } from "next/navigation";
-import avatar_13 from "/public/images/avatar-13.png";
-import { ReactNode } from "react";
+import BottomMenu from "@/components/menu/BottomMenu";
+import PostPopups from "@/components/modals/PostPopups";
+import NavBar from "@/components/navbar/NavBar";
+import Preloader from "@/components/preloader/Preloader";
+import { ThemeProvider } from "next-themes";
+import { usePathname } from "next/navigation";
+import { useEffect } from "react";
+import ScrollToTop from "@/components/scrollToTop/ScrollToTop";
+import "react-modal-video/css/modal-video.css";
+import "slick-carousel/slick/slick.css";
+import "../styles/tailwind.scss"; // ✅ Enable global styles
 
-interface PagesLayoutProps {
-  children: ReactNode;
-  params: Promise<{ pageId?: string }>;
-}
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  const pathname = usePathname();
+  const isLoginPage = pathname === "/login";
+  const clss = pathname !== "/index-two" ? "container" : "container-fluid";
 
-const PagesLayout = async ({ params, children }: PagesLayoutProps) => {
-  const resolvedParams = await params;
-  const { pageId } = useParams<{ pageId: string }>();
-
-  if (resolvedParams.pageId) {
-    return children;
-  }
+  useEffect(() => {
+    if (!isLoginPage) {
+      require("bootstrap/dist/js/bootstrap.bundle.min.js");
+    }
+  }, [isLoginPage]);
 
   return (
-    <main className="main-content">
-      <div className="container">
-        <div className="row">
-          <div className="col-xl-3 col-lg-4">
-            <GroupLeftMenu
-              adminTools={pageAdminTools}
-              img={avatar_13}
-              name="Java World"
-              type="Public"
+    <html lang="en">
+      <head>
+        {!isLoginPage && (
+          <>
+            <meta
+              name="description"
+              content="Circlehub React Nextjs Template"
             />
-          </div>
+            <title>Circlehub - React Nextjs Template</title>
+          </>
+        )}
+      </head>
+      <body className={isLoginPage ? "login-page" : "app-page"}>
+        <ThemeProvider attribute="class" enableSystem={false}>
+          {!isLoginPage && (
+            <>
+              <Preloader />
+              <ScrollToTop />
+              <NavBar clss={clss} />
+              <BottomMenu />
+              <PostPopups />
+            </>
+          )}
           {children}
-        </div>
-      </div>
-    </main>
+        </ThemeProvider>
+      </body>
+    </html>
   );
-};
-
-export default PagesLayout;
+}
