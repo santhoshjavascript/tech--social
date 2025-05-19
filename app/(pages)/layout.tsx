@@ -6,7 +6,7 @@ import { useParams } from "next/navigation";
 import avatar_13 from "/public/images/avatar-13.png";
 
 interface PagesLayoutProps {
-  params: { getLayout?: boolean };
+  params: { getLayout?: any };
   children: React.ReactNode;
 }
 
